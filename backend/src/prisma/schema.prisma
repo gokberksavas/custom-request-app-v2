@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Manager {
+  id        Int    @id @default(autoincrement())
+  username  String @unique @db.VarChar(30)
+  email     String @unique @db.VarChar(255)
+  password  String 
+  firstName String @db.VarChar(255)
+  lastName  String @db.VarChar(255)
+}
+
+model Submission {
+  id               Int              @id @default(autoincrement())
+  senderFirstName  String           @db.VarChar(255)
+  senderLastName   String           @db.VarChar(255)
+  senderEmail      String           @db.VarChar(255)
+  senderPhone      String           @db.VarChar(11)
+  description      String           
+  submissionStatus SubmissionStatus @default(BACKLOG)
+}
+
+enum SubmissionStatus {
+  BACKLOG
+  INPROG
+  DONE
+}
