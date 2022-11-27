@@ -1,11 +1,10 @@
-
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import { managerRouter } from '@src/routes/manager-routes';
 
-dotenv.config({ path: './.env.development'});
+dotenv.config({ path: './.env.development' });
 
 const app = express();
 

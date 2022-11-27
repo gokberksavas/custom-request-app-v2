@@ -1,8 +1,8 @@
 import prisma from '../prisma/create-prisma-instance';
-import { Manager } from 'src/types/manager-types'
+import { Manager } from 'src/types/manager-types';
 
 class ManagerController {
-  async createManager(manager: Manager): Promise <Partial<Manager> | null> {
+  async createManager(manager: Manager): Promise<Partial<Manager> | null> {
     const createdManager = await prisma.manager.create({
       data: manager,
       select: {
@@ -11,7 +11,7 @@ class ManagerController {
         email: true,
         firstName: true,
         lastName: true,
-      }
+      },
     });
 
     return createdManager;
@@ -26,8 +26,8 @@ class ManagerController {
         username: true,
         email: true,
         firstName: true,
-        lastName: true
-      }
+        lastName: true,
+      },
     });
 
     return deletedManager;
@@ -38,32 +38,39 @@ class ManagerController {
       where: {
         OR: [
           {
-            username: identifier
+            username: identifier,
           },
           {
-            email: identifier
-          }
-        ]
+            email: identifier,
+          },
+        ],
       },
       select: {
         password: true,
-      }
+      },
     });
 
-    return  manager?.password ?? null
+    return manager?.password ?? null;
   }
-  async getManagerProfile(username: string): Promise<Partial<Manager> | null> {
+  async getManagerProfile(identifier: string): Promise<Partial<Manager> | null> {
     const manager = await prisma.manager.findFirst({
       where: {
-        username: username,
+        OR: [
+          {
+            username: identifier,
+          },
+          {
+            email: identifier,
+          },
+        ],
       },
       select: {
         id: true,
         username: true,
         email: true,
         firstName: true,
-        lastName: true
-      }
+        lastName: true,
+      },
     });
 
     return manager;
