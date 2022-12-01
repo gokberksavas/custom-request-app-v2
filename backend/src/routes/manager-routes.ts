@@ -9,6 +9,7 @@ import { Manager } from '@src/types/manager-types';
 
 export const managerRouter = Router();
 
+//Manager: { email, username, password, firstname, lastname }
 managerRouter.post('/register', hashPassword, async (req: Request, res: Response) => {
   try {
     const createdManager = (await managerController.createManager(req.body)) as Partial<Manager>;
@@ -19,6 +20,7 @@ managerRouter.post('/register', hashPassword, async (req: Request, res: Response
   }
 });
 
+//data = { identifier: username/email, password }
 managerRouter.post('/login', authenticate, async (req: Request, res: Response) => {
   try {
     const loggedInManager = (await managerController.getManagerProfile(req.body.identifier)) as Partial<Manager>;

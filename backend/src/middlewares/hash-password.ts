@@ -10,8 +10,6 @@ export const hashPassword = async (req: Request, res: Response, next: NextFuncti
 
     req.body.password = saltedPassword;
 
-    console.log(saltedPassword);
-
     next();
   } catch (err) {
     res.sendStatus(500);

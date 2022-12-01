@@ -14,7 +14,7 @@ model Manager {
   id        Int    @id @default(autoincrement())
   username  String @unique @db.VarChar(30)
   email     String @unique @db.VarChar(255)
-  password  String 
+  password  String
   firstName String @db.VarChar(255)
   lastName  String @db.VarChar(255)
 }
@@ -25,7 +25,8 @@ model Submission {
   senderLastName   String           @db.VarChar(255)
   senderEmail      String           @db.VarChar(255)
   senderPhone      String           @db.VarChar(11)
-  description      String           
+  description      String
+  createdAt        DateTime         @default(now())
   submissionStatus SubmissionStatus @default(BACKLOG)
 }
 

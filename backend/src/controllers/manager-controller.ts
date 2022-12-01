@@ -1,8 +1,8 @@
-import prisma from '../prisma/create-prisma-instance';
-import { Manager } from 'src/types/manager-types';
+import prisma from '@src/prisma/create-prisma-instance';
+import { Manager } from '@src/types/manager-types';
 
 class ManagerController {
-  async createManager(manager: Manager): Promise<Partial<Manager> | null> {
+  async createManager(manager: Manager): Promise<Partial<Manager>> {
     const createdManager = await prisma.manager.create({
       data: manager,
       select: {
@@ -16,6 +16,7 @@ class ManagerController {
 
     return createdManager;
   }
+  //use with try catch
   async deleteManager(id: number): Promise<Partial<Manager>> {
     const deletedManager = await prisma.manager.delete({
       where: {
@@ -32,9 +33,9 @@ class ManagerController {
 
     return deletedManager;
   }
-  //identifier can be username or email
-  async getManagerPassword(identifier: string): Promise<string | null> {
-    const manager = await prisma.manager.findFirst({
+  //identifier can be username or email && it will throw an error if record is not found, should be try/catched
+  async getManagerPassword(identifier: string): Promise<string> {
+    const manager = await prisma.manager.findFirstOrThrow({
       where: {
         OR: [
           {
@@ -50,10 +51,11 @@ class ManagerController {
       },
     });
 
-    return manager?.password ?? null;
+    return manager.password;
   }
-  async getManagerProfile(identifier: string): Promise<Partial<Manager> | null> {
-    const manager = await prisma.manager.findFirst({
+  //use with try catch
+  async getManagerProfile(identifier: string): Promise<Partial<Manager>> {
+    const manager = await prisma.manager.findFirstOrThrow({
       where: {
         OR: [
           {
