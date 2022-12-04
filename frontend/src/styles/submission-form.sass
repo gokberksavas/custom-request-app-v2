@@ -1,0 +1,65 @@
+@import '@/styles/variables.sass'
+
+.form-wrapper
+  padding: 1rem
+  max-width: 768px
+  margin: 0 auto
+
+  .form
+    display: grid
+    grid-template-columns: [col-1-start] 50% [col-1-end col-2-start] 50% [col-2-end]
+    grid-template-rows: repeat(4, auto)
+    column-gap: .5rem
+    row-gap: 1rem
+
+    .form-item
+      display: inline-block
+      position: relative
+
+      label
+        position: absolute
+        padding: .2rem
+        font-size: 1rem
+        top: 50%
+        left: .5rem
+        transform: translateY(-50%)
+        transition: all .2s linear
+
+      &:focus-within
+        label
+          font-size: .8rem
+          top: .2rem
+          transform: translateY(0)
+          color: $primary
+          font-weight: $bold
+        
+        input
+          border-color: $primary
+          outline: none
+
+      input
+        display: block
+        width: 100%
+        border: 2px solid $text-dark
+        border-radius: 5px
+        font-size: 1rem
+        padding: 1rem .5rem .5rem 
+        background-color: $grey-light
+        outline: none
+      
+      textarea
+        resize: none
+        display: block
+        width: 100%
+
+    .form-item:nth-child(1)
+      grid-column-start: col-1-start
+      grid-column-end: col-1-end
+    
+    .form-item:nth-child(2)
+      grid-column-start: col-2-start
+      grid-column-end: col-2-end
+    
+    .form-item
+      grid-column-start: col-1-start
+      grid-column-end: col-2-end 

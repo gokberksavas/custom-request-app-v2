@@ -1,0 +1,61 @@
+@import '@/styles/variables.sass'
+@import '@/styles/animations.sass'
+
+.layout-wrapper
+  width: 100%
+
+  .navigation-bar
+    width: 100%
+    padding: 1rem 1rem
+    display: flex
+    align-items: baseline
+    box-shadow: 0 1px 15px $grey
+    background-color: $off-white
+
+    .header
+      text-align: center
+      font-size: 3rem
+      font-weight: $bold
+      line-height: 3.2rem
+      color: $primary,
+      background-clip: text
+      -webkit-background-clip: text
+      -webkit-text-fill-color: transparent,
+      background-image: linear-gradient(110deg, $primary 23%, $primary-light 30%, $primary 37%)
+      background-size: 200% 100%
+      animation: header-gradient 5s linear infinite
+
+    .navigation
+      display: flex
+      justify-content: center
+      margin-left: 2rem
+
+      .navigation-item
+        font-size: 1rem
+        padding: .5rem 1rem
+        margin: 0 .2rem
+        font-weight: $bold
+        color: $text-dark
+        height: 2rem
+        transition: transform .2s
+        position: relative
+      
+      .navigation-item.active::before
+        content: ""
+        position: absolute
+        display: block
+        width: 9px
+        height: 9px
+        border-radius: 50%
+        background: $secondary
+        left: 1%
+        top: 50%
+        transform: translateY(-50%)
+      
+      .navigation-item:hover
+        transform: scale(1.02)
+  
+  .page-content
+    padding: 0 2rem  
+
+  
