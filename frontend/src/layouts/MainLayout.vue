@@ -33,6 +33,6 @@ const currentPath = computed(() => {
   </div>
 </template>
 
-<style src="@/styles/layout.sass">
+<style src="@/styles/main-layout.sass">
 
 </style>

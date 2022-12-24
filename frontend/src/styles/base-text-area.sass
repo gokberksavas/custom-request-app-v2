@@ -1,0 +1,36 @@
+@import '@/styles/variables.sass'
+  
+.text-area-wrapper
+  position: relative
+
+  textarea
+    resize: none
+    min-height: 10rem
+    border-radius: 5px
+    border: 2px solid transparent
+    background: $grey-light
+    outline: none
+    width: 100%
+    font-size: 1rem
+    padding: 1rem .3rem 0
+    transition: border-color .1s linear
+    font-family: inherit
+
+    &:focus-visible
+      border-color: $primary
+
+  .text-area-label
+    position: absolute
+    transition: .2s linear
+    top: 7%
+    left: calc(.3rem + 2px)
+    color: $text-dark
+    font-size: 1rem
+    font-weight: $medium
+    pointer-events: none
+
+    &.value-exists
+      font-size: .65rem
+      top: 5%
+      color: $primary
+      font-weight: $bold

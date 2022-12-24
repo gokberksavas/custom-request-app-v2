@@ -1,0 +1,35 @@
+@import '@/styles/variables.sass'
+
+.input-wrapper
+  position: relative
+
+  .input-label
+    position: absolute
+    transition: .2s linear
+    top: 50%
+    left: calc(.3rem + 2px)
+    transform: translateY(-50%)
+    color: $text-dark
+    font-size: 1rem
+    font-weight: $medium
+    pointer-events: none
+
+    &.value-exists
+      font-size: .65rem
+      top: 25%
+      color: $primary
+      font-weight: $bold
+
+  input
+    border-radius: 5px
+    border: 2px solid transparent
+    background: $grey-light
+    outline: none
+    line-height: 2.5rem
+    width: 100%
+    font-size: 1rem
+    padding: .4rem .3rem 0
+    transition: border-color .1s linear
+
+    &:focus-visible
+      border-color: $primary
